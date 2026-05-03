@@ -1,11 +1,11 @@
 export type FormSlug =
-  | 'daily-check-in'
-  | 'body-awareness'
-  | 'end-of-shift-reset'
-  | 'emotional-body-map'
-  | 'regulation-tracker'
-  | 'pendulation-tracking'
-  | 'resource-anchoring'
+  | 'welcome-to-your-body'
+  | 'pleasure-aliveness-map'
+  | 'sensation-vocabulary'
+  | 'desire-discovery'
+  | 'nervous-system-check-in'
+  | 'benefits-resonate'
+  | 'embodied-confidence'
   | 'titration-awareness'
   | 'boundary-containment'
   | 'somatic-tracking';
@@ -161,13 +161,13 @@ export type SomaticTrackingValues = {
 };
 
 export type FormValuesMap = {
-  'daily-check-in': DailyCheckInValues;
-  'body-awareness': BodyAwarenessValues;
-  'end-of-shift-reset': EndOfShiftValues;
-  'emotional-body-map': EmotionalBodyMapValues;
-  'regulation-tracker': RegulationTrackerValues;
-  'pendulation-tracking': PendulationTrackingValues;
-  'resource-anchoring': ResourceAnchoringValues;
+  'welcome-to-your-body': DailyCheckInValues;
+  'pleasure-aliveness-map': BodyAwarenessValues;
+  'sensation-vocabulary': EndOfShiftValues;
+  'desire-discovery': EmotionalBodyMapValues;
+  'nervous-system-check-in': RegulationTrackerValues;
+  'benefits-resonate': PendulationTrackingValues;
+  'embodied-confidence': ResourceAnchoringValues;
   'titration-awareness': TitrationAwarenessValues;
   'boundary-containment': BoundaryContainmentValues;
   'somatic-tracking': SomaticTrackingValues;
