@@ -3,6 +3,7 @@
 import { Control, Controller, FieldErrors, UseFormRegister } from 'react-hook-form';
 import { FieldDefinition } from '@/types/forms';
 import { cn } from '@/lib/utils';
+import { TrackerField } from '@/components/forms/TrackerField';
 
 type FieldProps<T extends Record<string, any>> = {
   field: FieldDefinition;
@@ -239,6 +240,20 @@ export function Field<T extends Record<string, any>>({ field, register, control,
             />
           ))}
         </div>
+        <ErrorMessage id={errorId} message={message} />
+      </fieldset>
+    );
+  }
+
+
+  if (field.type === 'tracker') {
+    return (
+      <fieldset aria-describedby={describedBy} className="space-y-3">
+        <legend className="text-sm font-medium text-ink">{field.label}</legend>
+        {field.description ? (
+          <p id={helperId} className="text-sm text-stone">{field.description}</p>
+        ) : null}
+        <TrackerField control={control as any} />
         <ErrorMessage id={errorId} message={message} />
       </fieldset>
     );
