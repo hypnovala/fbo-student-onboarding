@@ -49,7 +49,14 @@ export function FormExperience<K extends FormSlug>({ form }: { form: FormDefinit
     const values = watchedValues as FormValuesMap[K];
 
     const filled = Object.values(values).filter((value) => {
-      if (Array.isArray(value)) return value.filter(Boolean).length > 0;
+      if (Array.isArray(value)) {
+        if (value.length && typeof value[0] === 'object' && value[0] !== null && 'day' in (value[0] as object)) {
+          return (value as Array<Record<string, unknown>>).some((day) =>
+            ['bodyScanCompleted', 'breathingCompleted', 'groundingCompleted', 'shoulderResetCompleted'].some((key) => day[key] === true),
+          );
+        }
+        return value.filter(Boolean).length > 0;
+      }
       return value !== '' && value !== null && value !== undefined;
     }).length;
 

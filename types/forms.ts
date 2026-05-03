@@ -1,13 +1,16 @@
 // Slugs kept from original repo so storage, routing, and form engine work unchanged.
 // Content behind each slug has been replaced with FBO student-facing forms.
 export type FormSlug =
-  | 'daily-check-in'       // Welcome to Your Body
-  | 'body-awareness'       // Pleasure & Aliveness Map
-  | 'end-of-shift-reset'   // Sensation Vocabulary Builder
-  | 'emotional-body-map'   // Desire Discovery Form
-  | 'regulation-tracker'   // Know Your Nervous System
-  | 'pendulation-tracking' // Benefits That Resonate With Me
-  | 'resource-anchoring';  // Embodied Confidence Check-In
+  | 'welcome-to-your-body'
+  | 'pleasure-aliveness-map'
+  | 'sensation-vocabulary'
+  | 'desire-discovery'
+  | 'nervous-system-check-in'
+  | 'benefits-resonate'
+  | 'embodied-confidence'
+  | 'titration-awareness'
+  | 'boundary-containment'
+  | 'somatic-tracking';
 
 export type ProgressStatus = 'draft' | 'completed';
 
@@ -130,13 +133,16 @@ export type EmbodiedConfidenceValues = {
 // ─── FormValuesMap ────────────────────────────────────────────────────────────
 
 export type FormValuesMap = {
-  'daily-check-in': BodyWelcomeValues;
-  'body-awareness': PleasureMapValues;
-  'end-of-shift-reset': SensationVocabularyValues;
-  'emotional-body-map': DesireDiscoveryValues;
-  'regulation-tracker': NervousSystemValues;
-  'pendulation-tracking': BenefitsExplorerValues;
-  'resource-anchoring': EmbodiedConfidenceValues;
+  'welcome-to-your-body': DailyCheckInValues;
+  'pleasure-aliveness-map': BodyAwarenessValues;
+  'sensation-vocabulary': EndOfShiftValues;
+  'desire-discovery': EmotionalBodyMapValues;
+  'nervous-system-check-in': RegulationTrackerValues;
+  'benefits-resonate': PendulationTrackingValues;
+  'embodied-confidence': ResourceAnchoringValues;
+  'titration-awareness': TitrationAwarenessValues;
+  'boundary-containment': BoundaryContainmentValues;
+  'somatic-tracking': SomaticTrackingValues;
 };
 
 export type SavedFormEntry<T = unknown> = {
