@@ -7,7 +7,7 @@ const d = (daysAgo: number) => new Date(now.getTime() - daysAgo * 86_400_000).to
 
 export const demoEntries: SavedFormEntry[] = [
   {
-    slug: 'daily-check-in',
+    slug: 'welcome-to-your-body',
     title: 'Welcome to Your Body',
     status: 'completed',
     updatedAt: d(6),
@@ -23,7 +23,7 @@ export const demoEntries: SavedFormEntry[] = [
     },
   },
   {
-    slug: 'body-awareness',
+    slug: 'pleasure-aliveness-map',
     title: 'Pleasure & Aliveness Map',
     status: 'completed',
     updatedAt: d(5),
@@ -38,7 +38,7 @@ export const demoEntries: SavedFormEntry[] = [
     },
   },
   {
-    slug: 'end-of-shift-reset',
+    slug: 'sensation-vocabulary',
     title: 'Sensation Vocabulary Builder',
     status: 'completed',
     updatedAt: d(4),
@@ -53,7 +53,7 @@ export const demoEntries: SavedFormEntry[] = [
     },
   },
   {
-    slug: 'pendulation-tracking',
+    slug: 'benefits-resonate',
     title: 'Benefits That Resonate With Me',
     status: 'completed',
     updatedAt: d(2),
@@ -68,7 +68,7 @@ export const demoEntries: SavedFormEntry[] = [
     },
   },
   {
-    slug: 'resource-anchoring',
+    slug: 'embodied-confidence',
     title: 'Embodied Confidence Check-In',
     status: 'draft',
     updatedAt: d(1),
