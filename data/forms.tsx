@@ -25,14 +25,14 @@ const sensationOptions = [
 
 export const formDefinitions: FormDefinition[] = [
   {
-    slug: 'daily-check-in',
-    title: 'Daily Nervous System Check-In',
-    shortTitle: 'Daily Check-In',
+    slug: 'welcome-to-your-body',
+    title: 'Welcome to Your Body',
+    shortTitle: 'Welcome',
     summary: 'A quick daily reset to notice energy, stress, sleep, and body signals.',
     description:
       'Notice how your body and energy feel today before moving into the rest of your day.',
     estimatedTime: '3 minutes',
-    audience: 'Ideal before a shift, during a break, or when the day starts to feel loud.',
+    audience: 'A gentle place to begin before reflection or when reconnecting with your body.',
     fields: [
       { name: 'date', label: 'Date', type: 'date' },
       { name: 'energyLevel', label: 'Energy level', type: 'range', min: 1, max: 10, description: '1 is very low, 10 is fully resourced.' },
@@ -46,14 +46,14 @@ export const formDefinitions: FormDefinition[] = [
     ],
   },
   {
-    slug: 'body-awareness',
-    title: '60-Second Body Awareness Form',
-    shortTitle: '60-Second Awareness',
+    slug: 'pleasure-aliveness-map',
+    title: 'Pleasure & Aliveness Map',
+    shortTitle: 'Pleasure Map',
     summary: 'Compare stress and body tension before and after one minute of noticing.',
     description:
       'Track what shifts when you pause for one minute and bring attention back to your body.',
     estimatedTime: '1 minute',
-    audience: 'Helpful between meetings, after a patient interaction, or before entering home mode.',
+    audience: 'Useful after an emotional moment or anytime you want to notice what feels alive.',
     fields: [
       { name: 'beforeStressLevel', label: 'Before exercise stress level', type: 'range', min: 1, max: 10 },
       { name: 'tensionArea', label: 'Where did you notice the most tension?', type: 'text', placeholder: 'Example: jaw, shoulders, stomach' },
@@ -73,14 +73,14 @@ export const formDefinitions: FormDefinition[] = [
     ],
   },
   {
-    slug: 'end-of-shift-reset',
-    title: 'End-of-Shift Reset Form',
-    shortTitle: 'End-of-Shift Reset',
+    slug: 'sensation-vocabulary',
+    title: 'Sensation Vocabulary Builder',
+    shortTitle: 'Sensation Vocabulary',
     summary: 'A structured reset to help you transition out of work mode with more steadiness.',
     description:
       'Use this form to gently transition out of work mode and notice what feels different after a brief reset.',
     estimatedTime: '2 minutes',
-    audience: 'Best used at the end of a long shift, class day, caregiving block, or after an intense task.',
+    audience: 'Helpful when noticing sensation and giving language to what your body is sharing.',
     fields: [
       { name: 'activationLevel', label: 'How activated do you feel right now?', type: 'range', min: 1, max: 10 },
       { name: 'jawRelaxed', label: 'Jaw relaxed?', type: 'radio', options: [{ label: 'Yes', value: 'yes' }, { label: 'No', value: 'no' }] },
@@ -92,9 +92,9 @@ export const formDefinitions: FormDefinition[] = [
     ],
   },
   {
-    slug: 'emotional-body-map',
-    title: 'Emotional Body Map Reflection Form',
-    shortTitle: 'Body Map Reflection',
+    slug: 'desire-discovery',
+    title: 'Desire Discovery',
+    shortTitle: 'Desire Discovery',
     summary: 'Observe where a sensation shows up and what support may fit that moment.',
     description:
       'Explore where a sensation shows up in your body and what it may be asking for.',
@@ -115,9 +115,9 @@ export const formDefinitions: FormDefinition[] = [
     ],
   },
   {
-    slug: 'regulation-tracker',
-    title: '7-Day Regulation Tracker',
-    shortTitle: '7-Day Tracker',
+    slug: 'nervous-system-check-in',
+    title: 'Know Your Nervous System',
+    shortTitle: 'Nervous System Check-In',
     summary: 'Track simple daily resets over a week and note what supported steadiness.',
     description:
       'Track simple daily practices and see which small actions help you feel more supported.',
@@ -126,9 +126,9 @@ export const formDefinitions: FormDefinition[] = [
     fields: [{ name: 'days', label: '7-day tracker', type: 'tracker' }],
   },
   {
-    slug: 'pendulation-tracking',
-    title: 'Pendulation Tracking Form',
-    shortTitle: 'Pendulation Tracking',
+    slug: 'benefits-resonate',
+    title: 'Benefits That Resonate',
+    shortTitle: 'Benefits',
     summary: 'Gently notice movement between discomfort and neutrality without forcing either state.',
     description:
       'Gently move your attention between an area of discomfort and a more neutral or steady area in your body.',
@@ -155,14 +155,14 @@ export const formDefinitions: FormDefinition[] = [
     ],
   },
   {
-    slug: 'resource-anchoring',
-    title: 'Resource Anchoring Form',
-    shortTitle: 'Resource Anchoring',
+    slug: 'embodied-confidence',
+    title: 'Embodied Confidence Check-In',
+    shortTitle: 'Confidence Check-In',
     summary: 'Anchor into a supportive cue and notice how it lands in your body.',
     description:
       'Bring attention to something that feels steady, supportive, or slightly pleasant.',
     estimatedTime: '2 minutes',
-    audience: 'Useful when you want to return to a supportive cue before a task, conversation, or transition.',
+    audience: 'Useful when you want to return to a supportive cue before a private practice, after an emotional moment, or before reflection.',
     fields: [
       { name: 'resourceType', label: 'Resource type', type: 'text', placeholder: 'Example: person, place, memory, sensation' },
       { name: 'whereFeltInBody', label: 'Where do you feel it in your body?', type: 'text', placeholder: 'Example: chest, belly, shoulders, hands' },
