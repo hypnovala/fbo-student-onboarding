@@ -15,6 +15,7 @@ import { FormSection } from '@/components/ui/FormSection';
 import { ProgressBar } from '@/components/ui/ProgressBar';
 import { formatDateTime } from '@/lib/utils';
 import { useSavedForms } from '@/lib/useSavedForms';
+import { TrackerField } from './TrackerField';
 
 export function FormExperience<K extends FormSlug>({ form }: { form: FormDefinition & { slug: K } }) {
   const [statusMessage, setStatusMessage] = useState('');
@@ -53,7 +54,7 @@ export function FormExperience<K extends FormSlug>({ form }: { form: FormDefinit
     }).length;
 
     return Math.round((filled / form.fields.length) * 100);
-  }, [form.fields.length, watchedValues]);
+  }, [form.fields.length, form.slug, watchedValues]);
 
   const onSaveDraft = () => {
     saveEntry(form.slug, form.title, formMethods.getValues(), 'draft');
@@ -129,15 +130,19 @@ export function FormExperience<K extends FormSlug>({ form }: { form: FormDefinit
       <Card className="p-6 md:p-8">
         <form onSubmit={formMethods.handleSubmit(onSubmit)} className="space-y-6" noValidate>
           <FormSection title="Notice and observe" description="Complete each field in the way that feels most useful today.">
-            {form.fields.map((field) => (
-              <Field
-                key={field.name}
-                field={field}
-                register={formMethods.register as any}
-                control={formMethods.control as any}
-                errors={formMethods.formState.errors as any}
-              />
-            ))}
+            {form.slug === 'regulation-tracker' ? (
+              <TrackerField control={formMethods.control as any} />
+            ) : (
+              form.fields.map((field) => (
+                <Field
+                  key={field.name}
+                  field={field}
+                  register={formMethods.register as any}
+                  control={formMethods.control as any}
+                  errors={formMethods.formState.errors as any}
+                />
+              ))
+            )}
           </FormSection>
           <div className="flex flex-col gap-3 border-t border-mist pt-6 sm:flex-row">
             <Button type="submit" className="sm:min-w-48" disabled={isSubmitting}>
