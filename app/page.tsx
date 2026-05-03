@@ -1,92 +1,81 @@
 import Link from 'next/link';
-import { ArrowRight, Sparkles, Waves, Heart } from 'lucide-react';
-import { formDefinitions } from '@/data/forms';
-import { Card } from '@/components/ui/Card';
-import { SectionIntro } from '@/components/ui/SectionIntro';
+import { ArrowRight, Eye, Heart, Star } from 'lucide-react';
 
-const features = [
-  {
-    title: 'Arrive in your body',
-    description: 'Simple guided reflections that help you slow down and actually notice what is here.',
-    icon: Waves,
-  },
-  {
-    title: 'Discover what resonates',
-    description: 'Explore which benefits of somatic bodywork feel most alive for you right now.',
-    icon: Sparkles,
-  },
-  {
-    title: 'Track what shifts',
-    description: 'Return over time and watch your relationship with your body quietly change.',
-    icon: Heart,
-  },
+const forms = [
+  ['Welcome to Your Body', 'Your first arrival — no right answers, only noticing.'],
+  ['Pleasure & Aliveness Map', 'Where do you feel alive? Where have you gone quiet?'],
+  ['Sensation Vocabulary Builder', 'Learn to feel before you label.'],
+  ['Desire Discovery', 'What do you actually want — not what you think you should?'],
+  ['Know Your Nervous System', 'Notice regulated, activated, or shut down states with care.'],
+  ['Benefits That Resonate', 'Which doors feel most alive for you right now?'],
+  ['Embodied Confidence Check-In', 'Return here often and notice the shifts you are discovering.'],
 ];
 
 export default function HomePage() {
   return (
-    <div className="space-y-14">
-      <section className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
-        <div className="space-y-6">
-          <SectionIntro
-            titleAs="h1"
-            title="Before the right person finds you — find yourself."
-            description="This is the beginning of your somatic journey. Simple, guided reflections designed to help you come home to your body — build presence, discover desire, and develop the kind of embodied confidence that changes everything."
-          />
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <Link href="/forms" className="inline-flex items-center justify-center rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white transition hover:opacity-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky focus-visible:ring-offset-2">
-              Begin Your Journey <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-            <Link href="/explore" className="inline-flex items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-semibold text-ink ring-1 ring-mist transition hover:bg-canvas focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky focus-visible:ring-offset-2">
-              Explore the Benefits
-            </Link>
+    <div className="space-y-0">
+      <section>
+        <div className="grid gap-10 py-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:py-20">
+          <div>
+            <p className="mb-5 flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.18em] text-primary before:block before:h-px before:w-8 before:bg-primary">Your somatic journey begins here</p>
+            <h1 className="serif mb-6 text-4xl font-light leading-[1.18] tracking-tight md:text-6xl">Before the right person finds you — <em className="text-primary">find yourself.</em></h1>
+            <p className="mb-10 max-w-xl text-base font-light text-stone">Not with a partner. Not with a goal. With you — arriving in your own body, maybe for the first time.</p>
+            <div className="flex flex-wrap gap-3">
+              <Link href="#forms" className="inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3 text-[13px] font-medium tracking-[0.04em] text-white">Begin Your Journey <ArrowRight className="h-4 w-4" /></Link>
+              <Link href="#explore" className="inline-flex items-center rounded-full border border-mist px-7 py-3 text-[13px] tracking-[0.04em] text-ink">Explore the Benefits</Link>
+            </div>
           </div>
-        </div>
-
-        <Card className="p-6">
-          <div className="rounded-[24px] border border-mist bg-gradient-to-br from-white to-warm/25 p-6">
-            <p className="text-sm font-medium text-ink italic">
-              "The work you do alone is the most intimate work of your life."
-            </p>
-            <p className="mt-3 text-xs text-stone">— Brock John · Somatic Sex Education</p>
-          </div>
-        </Card>
-      </section>
-
-      <section className="space-y-6">
-        <SectionIntro
-          eyebrow="How this works"
-          title="A guided path into your own body."
-          description="Most women have spent years living from the neck up — thinking, planning, performing — completely disconnected from the warmth, power, and intelligence that lives below. These reflections are an invitation back."
-        />
-        <div className="grid gap-4 md:grid-cols-3">
-          {features.map((feature) => {
-            const Icon = feature.icon;
-            return (
-              <Card key={feature.title} className="p-6">
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-sky/15 text-ink">
-                  <Icon className="h-5 w-5" />
-                </div>
-                <h3 className="text-lg font-semibold text-ink">{feature.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-stone">{feature.description}</p>
-              </Card>
-            );
-          })}
+          <aside className="relative overflow-hidden rounded-[20px] border border-mist bg-card p-9">
+            <blockquote className="serif relative z-10 mb-4 text-2xl font-light italic leading-relaxed">“The work you do alone is the most intimate work of your life.”</blockquote>
+            <div className="mb-3 h-px w-10 bg-gradient-to-r from-primary to-transparent" />
+            <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-primary">Brock John · Somatic Sex Education</p>
+          </aside>
         </div>
       </section>
 
-      <section className="space-y-6">
-        <SectionIntro
-          eyebrow="Your reflections"
-          title="Seven forms. One journey."
-          description="Each reflection is a step deeper into embodiment. Start with the first and follow the thread — or go wherever feels most alive right now."
-        />
+      <div className="h-px bg-mist" />
+
+      <section id="explore" className="py-16 md:py-24">
+        <div className="mx-auto mb-14 max-w-2xl text-center">
+          <span className="mb-4 block text-[11px] font-medium uppercase tracking-[0.18em] text-primary">How this works</span>
+          <h2 className="serif mb-4 text-4xl font-light">A guided path into your own body.</h2>
+          <p className="text-[15px] font-light text-stone">These reflections invite you to notice, feel, and discover the warmth and intelligence already within you at your own pace.</p>
+        </div>
+        <div className="grid gap-6 md:grid-cols-3">
+          <article className="rounded-2xl border border-mist bg-card p-8">
+            <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary"><Eye className="h-5 w-5" /></div>
+            <h3 className="serif text-[20px] text-ink">Arrive in your body</h3>
+            <p className="mt-2 text-sm font-light leading-7 text-stone">Simple guided reflections that help you slow down and notice what is here.</p>
+          </article>
+          <article className="rounded-2xl border border-mist bg-card p-8">
+            <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary"><Star className="h-5 w-5" /></div>
+            <h3 className="serif text-[20px] text-ink">Discover what resonates</h3>
+            <p className="mt-2 text-sm font-light leading-7 text-stone">Explore which benefits of somatic bodywork feel most alive for you right now.</p>
+          </article>
+          <article className="rounded-2xl border border-mist bg-card p-8">
+            <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary"><Heart className="h-5 w-5" /></div>
+            <h3 className="serif text-[20px] text-ink">Track what shifts</h3>
+            <p className="mt-2 text-sm font-light leading-7 text-stone">Return over time and notice what quietly changes in how you feel and move.</p>
+          </article>
+        </div>
+      </section>
+
+      <div className="h-px bg-mist" />
+
+      <section id="forms" className="-mx-4 bg-warm px-4 py-16 md:-mx-10 md:px-10 md:py-24">
+        <div className="mx-auto mb-12 max-w-2xl text-center">
+          <span className="mb-4 block text-[11px] font-medium uppercase tracking-[0.18em] text-primary">Your reflections</span>
+          <h2 className="serif mb-4 text-4xl font-light">Seven forms. One journey.</h2>
+          <p className="text-[15px] font-light text-stone">Each reflection is a step deeper into embodiment. Begin with step one or arrive where you feel called.</p>
+        </div>
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {formDefinitions.map((form, i) => (
-            <Card key={form.slug} className="p-5">
-              <p className="mb-1 text-xs font-medium text-stone">Step {i + 1}</p>
-              <h3 className="text-base font-semibold text-ink">{form.title}</h3>
-              <p className="mt-1 text-xs text-muted leading-5">{form.summary}</p>
-            </Card>
+          {forms.map(([title, summary], index) => (
+            <Link href="/forms" key={title} className="relative rounded-2xl border border-mist bg-card p-6 transition hover:-translate-y-0.5 hover:border-secondary hover:shadow-calm">
+              <p className="mb-2 text-[10px] font-medium uppercase tracking-[0.14em] text-primary">Step {String(index + 1).padStart(2, '0')}</p>
+              <h3 className="serif text-[17px] leading-snug text-ink">{title}</h3>
+              <p className="mt-2 pr-8 text-xs font-light leading-6 text-muted">{summary}</p>
+              <span className="absolute bottom-5 right-5 rounded-full bg-warm p-1.5 text-primary"><ArrowRight className="h-3.5 w-3.5" /></span>
+            </Link>
           ))}
         </div>
       </section>
