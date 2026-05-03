@@ -1,23 +1,14 @@
 export const siteTheme = {
-  name: 'Brock Somatic Exercise Forms',
-  tagline: 'Simple guided check-ins for steady, everyday support.',
+  name: 'FBO Student Onboarding',
+  tagline: 'Brock John · Somatic Sex Education',
   description:
-    'A calm, mobile-first website with reusable somatic exercise forms, printable summaries, and local progress tracking.',
-  colors: {
-    canvas: '#F7F5F1',
-    card: '#FFFFFF',
-    ink: '#24313A',
-    muted: '#61707A',
-    primary: '#7FA3A3',
-    secondary: '#A9B8C2',
-    border: '#DCE3E3',
-    warm: '#D8CBBE',
-  },
+    'A warm, mobile-first journey of embodied reflections with local progress tracking and printable summaries.',
 } as const;
 
 export const primaryNavigation = [
   { href: '/', label: 'Home' },
-  { href: '/forms', label: 'Forms' },
+  { href: '/#explore', label: 'Explore' },
+  { href: '/forms', label: 'Reflections' },
   { href: '/progress', label: 'Progress' },
   { href: '/about', label: 'About' },
 ] as const;
