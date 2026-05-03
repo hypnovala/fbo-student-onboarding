@@ -13,7 +13,7 @@ const daySchema = z.object({
 });
 
 export const formSchemas = {
-  'daily-check-in': z.object({
+  'welcome-to-your-body': z.object({
     date: z.string().min(1, nonEmptyMessage),
     energyLevel: z.number().min(1).max(10),
     stressLevel: z.number().min(1).max(10),
@@ -24,7 +24,7 @@ export const formSchemas = {
     reflection: z.string().min(5, nonEmptyMessage),
     supportiveAction: z.string().min(5, nonEmptyMessage),
   }),
-  'body-awareness': z.object({
+  'pleasure-aliveness-map': z.object({
     beforeStressLevel: z.number().min(1).max(10),
     tensionArea: z.string().min(2, nonEmptyMessage),
     changeAfter: z.string().min(5, nonEmptyMessage),
@@ -32,7 +32,7 @@ export const formSchemas = {
     grounded: z.enum(['yes', 'no', 'a-little']),
     notes: z.string().min(2, nonEmptyMessage),
   }),
-  'end-of-shift-reset': z.object({
+  'sensation-vocabulary': z.object({
     activationLevel: z.number().min(1).max(10),
     jawRelaxed: z.enum(['yes', 'no']),
     shouldersSoftened: z.enum(['yes', 'no']),
@@ -41,7 +41,7 @@ export const formSchemas = {
     softerNow: z.string().min(3, nonEmptyMessage),
     notes: z.string().min(2, nonEmptyMessage),
   }),
-  'emotional-body-map': z.object({
+  'desire-discovery': z.object({
     bodyArea: z.string().min(1, nonEmptyMessage),
     sensation: z.string().min(1, nonEmptyMessage),
     possibleEmotion: z.string().min(1, nonEmptyMessage),
@@ -49,10 +49,10 @@ export const formSchemas = {
     needRightNow: z.string().min(3, nonEmptyMessage),
     notes: z.string().min(2, nonEmptyMessage),
   }),
-  'regulation-tracker': z.object({
+  'nervous-system-check-in': z.object({
     days: z.array(daySchema).length(7, 'Track seven days.'),
   }),
-  'pendulation-tracking': z.object({
+  'benefits-resonate': z.object({
     discomfortArea: z.string().min(2, nonEmptyMessage),
     neutralArea: z.string().min(2, nonEmptyMessage),
     sensationInDiscomfort: z.string().min(2, nonEmptyMessage),
@@ -62,7 +62,7 @@ export const formSchemas = {
     didShiftOccur: z.enum(['yes', 'no', 'slightly']),
     notes: z.string().min(2, nonEmptyMessage),
   }),
-  'resource-anchoring': z.object({
+  'embodied-confidence': z.object({
     resourceType: z.string().min(2, nonEmptyMessage),
     whereFeltInBody: z.string().min(2, nonEmptyMessage),
     sensationQuality: z.string().min(2, nonEmptyMessage),
@@ -102,7 +102,7 @@ export const formSchemas = {
 } satisfies { [K in FormSlug]: z.ZodTypeAny };
 
 export const defaultValues: FormValuesMap = {
-  'daily-check-in': {
+  'welcome-to-your-body': {
     date: new Date().toISOString().slice(0, 10),
     energyLevel: 5,
     stressLevel: 5,
@@ -113,7 +113,7 @@ export const defaultValues: FormValuesMap = {
     reflection: '',
     supportiveAction: '',
   },
-  'body-awareness': {
+  'pleasure-aliveness-map': {
     beforeStressLevel: 5,
     tensionArea: '',
     changeAfter: '',
@@ -121,7 +121,7 @@ export const defaultValues: FormValuesMap = {
     grounded: 'a-little',
     notes: '',
   },
-  'end-of-shift-reset': {
+  'sensation-vocabulary': {
     activationLevel: 5,
     jawRelaxed: 'no',
     shouldersSoftened: 'no',
@@ -130,7 +130,7 @@ export const defaultValues: FormValuesMap = {
     softerNow: '',
     notes: '',
   },
-  'emotional-body-map': {
+  'desire-discovery': {
     bodyArea: '',
     sensation: '',
     possibleEmotion: '',
@@ -138,7 +138,7 @@ export const defaultValues: FormValuesMap = {
     needRightNow: '',
     notes: '',
   },
-  'regulation-tracker': {
+  'nervous-system-check-in': {
     days: Array.from({ length: 7 }, (_, index) => ({
       day: index + 1,
       bodyScanCompleted: false,
@@ -148,7 +148,7 @@ export const defaultValues: FormValuesMap = {
       notes: '',
     })),
   },
-  'pendulation-tracking': {
+  'benefits-resonate': {
     discomfortArea: '',
     neutralArea: '',
     sensationInDiscomfort: '',
@@ -158,7 +158,7 @@ export const defaultValues: FormValuesMap = {
     didShiftOccur: 'slightly',
     notes: '',
   },
-  'resource-anchoring': {
+  'embodied-confidence': {
     resourceType: '',
     whereFeltInBody: '',
     sensationQuality: '',
