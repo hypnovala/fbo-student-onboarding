@@ -118,7 +118,7 @@ export const formDefinitions: FormDefinition[] = [
     slug: 'nervous-system-check-in',
     title: 'Know Your Nervous System',
     shortTitle: 'Nervous System Check-In',
-    summary: 'Track simple daily resets over a week and note what supported steadiness.',
+    summary: 'Notice your regulation patterns across a week and witness what supports your nervous system.',
     description:
       'Track simple daily practices and see which small actions help you feel more supported.',
     estimatedTime: '5 minutes for setup, then 30 seconds per day',
@@ -129,9 +129,9 @@ export const formDefinitions: FormDefinition[] = [
     slug: 'benefits-resonate',
     title: 'Benefits That Resonate',
     shortTitle: 'Benefits',
-    summary: 'Gently notice movement between discomfort and neutrality without forcing either state.',
+    summary: 'Discover which benefits of somatic bodywork feel most resonant for you right now.',
     description:
-      'Gently move your attention between an area of discomfort and a more neutral or steady area in your body.',
+      'Reflect on which shifts you most want to receive: sensation, desire, boundaries, confidence, or grounded presence.',
     estimatedTime: '3 minutes',
     audience: 'Helpful when you want to notice whether shifting attention creates even a slight sense of change.',
     fields: [
@@ -158,9 +158,9 @@ export const formDefinitions: FormDefinition[] = [
     slug: 'embodied-confidence',
     title: 'Embodied Confidence Check-In',
     shortTitle: 'Confidence Check-In',
-    summary: 'Anchor into a supportive cue and notice how it lands in your body.',
+    summary: 'Return to this check-in to notice confidence, softness, and embodied presence over time.',
     description:
-      'Bring attention to something that feels steady, supportive, or slightly pleasant.',
+      'Track how you carry yourself, how present you feel, and what is becoming more available in your body-led confidence.',
     estimatedTime: '2 minutes',
     audience: 'Useful when you want to return to a supportive cue before a private practice, after an emotional moment, or before reflection.',
     fields: [
