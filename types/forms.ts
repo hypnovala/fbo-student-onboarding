@@ -1,13 +1,14 @@
-// Slugs kept from original repo so storage, routing, and form engine work unchanged.
-// Content behind each slug has been replaced with FBO student-facing forms.
 export type FormSlug =
-  | 'daily-check-in'       // Welcome to Your Body
-  | 'body-awareness'       // Pleasure & Aliveness Map
-  | 'end-of-shift-reset'   // Sensation Vocabulary Builder
-  | 'emotional-body-map'   // Desire Discovery Form
-  | 'regulation-tracker'   // Know Your Nervous System
-  | 'pendulation-tracking' // Benefits That Resonate With Me
-  | 'resource-anchoring';  // Embodied Confidence Check-In
+  | 'daily-check-in'
+  | 'body-awareness'
+  | 'end-of-shift-reset'
+  | 'emotional-body-map'
+  | 'regulation-tracker'
+  | 'pendulation-tracking'
+  | 'resource-anchoring'
+  | 'titration-awareness'
+  | 'boundary-containment'
+  | 'somatic-tracking';
 
 export type ProgressStatus = 'draft' | 'completed';
 
@@ -54,89 +55,122 @@ export type FormDefinition = {
   fields: FieldDefinition[];
 };
 
-// ─── Form value types ────────────────────────────────────────────────────────
+export type TrackerDay = {
+  day: number;
+  bodyScanCompleted: boolean;
+  breathingCompleted: boolean;
+  groundingCompleted: boolean;
+  shoulderResetCompleted: boolean;
+  notes: string;
+};
 
-/** Form 1 — Welcome to Your Body */
-export type BodyWelcomeValues = {
+export type DailyCheckInValues = {
   date: string;
-  presenceLevel: number;
-  bodyAreas: string[];
+  energyLevel: number;
+  stressLevel: number;
+  sleepQuality: number;
+  tensionAreas: string[];
   sensations: string[];
-  emotion: string[];
-  whatBroughtYouHere: string;
-  oneWord: string;
-};
-
-/** Form 2 — Pleasure & Aliveness Map */
-export type PleasureMapValues = {
-  aliveAreas: string[];
-  numbAreas: string[];
-  pleasureDefinition: string;
-  permissionLevel: number;
-  whatLimitsPleasure: string;
-  oneDesire: string;
-};
-
-/** Form 3 — Sensation Vocabulary Builder */
-export type SensationVocabularyValues = {
-  currentSensations: string[];
-  sensationLocation: string;
-  sensationDescription: string;
-  sensationShift: string;
-  storyVsSensation: string;
+  emotion: string;
   reflection: string;
+  supportiveAction: string;
 };
 
-/** Form 4 — Desire Discovery Form */
-export type DesireDiscoveryValues = {
-  desireInBody: string;
-  desireInLife: string;
-  desireBlocked: string[];
-  desirePermission: number;
-  desireBeliefs: string;
-  desireNewBelief: string;
+export type BodyAwarenessValues = {
+  beforeStressLevel: number;
+  tensionArea: string;
+  changeAfter: string;
+  afterStressLevel: number;
+  grounded: string;
+  notes: string;
 };
 
-/** Form 5 — Know Your Nervous System */
-export type NervousSystemValues = {
-  currentState: string;
+export type EndOfShiftValues = {
   activationLevel: number;
-  regulationSignals: string;
-  activationSignals: string;
-  regulationSupports: string[];
-  pleasureAndSafety: string;
+  jawRelaxed: string;
+  shouldersSoftened: string;
+  breathingHelped: string;
+  neutralThings: string[];
+  softerNow: string;
+  notes: string;
 };
 
-/** Form 6 — Benefits That Resonate With Me */
-export type BenefitsExplorerValues = {
-  resonantBenefits: string[];
-  mostImportant: string;
-  currentRelationshipWithBody: string;
-  readinessLevel: number;
-  intention: string;
-  oneQuestion: string;
+export type EmotionalBodyMapValues = {
+  bodyArea: string;
+  sensation: string;
+  possibleEmotion: string;
+  intensity: number;
+  needRightNow: string;
+  notes: string;
 };
 
-/** Form 7 — Embodied Confidence Check-In */
-export type EmbodiedConfidenceValues = {
-  date: string;
-  presenceInBody: number;
-  confidenceInBody: number;
-  howYouCarriedYourself: string;
-  momentOfPresence: string;
-  whatShifted: string;
+export type RegulationTrackerValues = {
+  days: TrackerDay[];
 };
 
-// ─── FormValuesMap ────────────────────────────────────────────────────────────
+export type PendulationTrackingValues = {
+  discomfortArea: string;
+  neutralArea: string;
+  sensationInDiscomfort: string;
+  sensationInNeutral: string;
+  intensityBefore: number;
+  intensityAfter: number;
+  didShiftOccur: string;
+  notes: string;
+};
+
+export type ResourceAnchoringValues = {
+  resourceType: string;
+  whereFeltInBody: string;
+  sensationQuality: string;
+  intensityOfResource: number;
+  didItExpand: string;
+  whatHelpedItGrow: string;
+  notes: string;
+};
+
+export type TitrationAwarenessValues = {
+  sensationNoticed: string;
+  intensityLevel: number;
+  wasItManageable: string;
+  didYouPause: string;
+  whatHelpedRegulate: string;
+  afterState: number;
+  notes: string;
+};
+
+export type BoundaryContainmentValues = {
+  boundaryAwareness: string;
+  whereYouFeelContained: string;
+  whereYouFeelOpenOrExposed: string;
+  didContainmentIncrease: string;
+  whatHelpedContainment: string;
+  bodyResponse: string;
+  notes: string;
+};
+
+export type SomaticTrackingValues = {
+  sensationLocation: string;
+  sensationType: string;
+  sensationMovement: string;
+  intensityStart: number;
+  intensityEnd: number;
+  didItChange: string;
+  changeDescription: string;
+  notes: string;
+};
 
 export type FormValuesMap = {
-  'daily-check-in': BodyWelcomeValues;
-  'body-awareness': PleasureMapValues;
-  'end-of-shift-reset': SensationVocabularyValues;
-  'emotional-body-map': DesireDiscoveryValues;
-  'regulation-tracker': NervousSystemValues;
-  'pendulation-tracking': BenefitsExplorerValues;
-  'resource-anchoring': EmbodiedConfidenceValues;
+  'daily-check-in': DailyCheckInValues;
+  'body-awareness': BodyAwarenessValues;
+  'end-of-shift-reset': EndOfShiftValues;
+  'emotional-body-map': EmotionalBodyMapValues;
+  'regulation-tracker': RegulationTrackerValues;
+  'pendulation-tracking': PendulationTrackingValues;
+  'resource-anchoring': ResourceAnchoringValues;
+  'titration-awareness': TitrationAwarenessValues;
+  'boundary-containment': BoundaryContainmentValues;
+  'somatic-tracking': SomaticTrackingValues;
 };
 
 export type SavedFormEntry<T = unknown> = {

@@ -1,159 +1,198 @@
 import { z } from 'zod';
 import { FormSlug, FormValuesMap } from '@/types/forms';
 
-const req = 'Please complete this field.';
-const arrReq = 'Choose at least one.';
+const nonEmptyMessage = 'Please complete this field.';
 
-// ─── Schemas ──────────────────────────────────────────────────────────────────
+const daySchema = z.object({
+  day: z.number(),
+  bodyScanCompleted: z.boolean(),
+  breathingCompleted: z.boolean(),
+  groundingCompleted: z.boolean(),
+  shoulderResetCompleted: z.boolean(),
+  notes: z.string().max(240, 'Keep notes under 240 characters.').default(''),
+});
 
 export const formSchemas = {
-
-  /** Form 1 — Welcome to Your Body */
   'daily-check-in': z.object({
-    date: z.string().min(1, req),
-    presenceLevel: z.number().min(1).max(10),
-    bodyAreas: z.array(z.string()).min(1, arrReq),
-    sensations: z.array(z.string()).min(1, arrReq),
-    emotion: z.array(z.string()).min(1, arrReq),
-    whatBroughtYouHere: z.string().min(3, req),
-    oneWord: z.string().min(1, req),
+    date: z.string().min(1, nonEmptyMessage),
+    energyLevel: z.number().min(1).max(10),
+    stressLevel: z.number().min(1).max(10),
+    sleepQuality: z.number().min(1).max(10),
+    tensionAreas: z.array(z.string()).min(1, 'Choose at least one area.'),
+    sensations: z.array(z.string()).min(1, 'Choose at least one sensation.'),
+    emotion: z.string().min(2, nonEmptyMessage),
+    reflection: z.string().min(5, nonEmptyMessage),
+    supportiveAction: z.string().min(5, nonEmptyMessage),
   }),
-
-  /** Form 2 — Pleasure & Aliveness Map */
   'body-awareness': z.object({
-    aliveAreas: z.array(z.string()).min(1, arrReq),
-    numbAreas: z.array(z.string()).default([]),
-    pleasureDefinition: z.string().min(3, req),
-    permissionLevel: z.number().min(1).max(10),
-    whatLimitsPleasure: z.string().min(3, req),
-    oneDesire: z.string().min(2, req),
+    beforeStressLevel: z.number().min(1).max(10),
+    tensionArea: z.string().min(2, nonEmptyMessage),
+    changeAfter: z.string().min(5, nonEmptyMessage),
+    afterStressLevel: z.number().min(1).max(10),
+    grounded: z.enum(['yes', 'no', 'a-little']),
+    notes: z.string().min(2, nonEmptyMessage),
   }),
-
-  /** Form 3 — Sensation Vocabulary Builder */
   'end-of-shift-reset': z.object({
-    currentSensations: z.array(z.string()).min(1, arrReq),
-    sensationLocation: z.string().min(2, req),
-    sensationDescription: z.string().min(5, req),
-    sensationShift: z.enum(['shifted', 'same', 'disappeared', 'intensified']),
-    storyVsSensation: z.string().min(3, req),
-    reflection: z.string().min(3, req),
-  }),
-
-  /** Form 4 — Desire Discovery Form */
-  'emotional-body-map': z.object({
-    desireInBody: z.string().min(3, req),
-    desireInLife: z.string().min(3, req),
-    desireBlocked: z.array(z.string()).default([]),
-    desirePermission: z.number().min(1).max(10),
-    desireBeliefs: z.string().min(3, req),
-    desireNewBelief: z.string().min(3, req),
-  }),
-
-  /** Form 5 — Know Your Nervous System */
-  'regulation-tracker': z.object({
-    currentState: z.enum(['regulated', 'activated', 'shutdown', 'mixed']),
     activationLevel: z.number().min(1).max(10),
-    regulationSignals: z.string().min(3, req),
-    activationSignals: z.string().min(3, req),
-    regulationSupports: z.array(z.string().min(1, req)).min(1, 'Add at least one thing that helps.'),
-    pleasureAndSafety: z.string().min(5, req),
+    jawRelaxed: z.enum(['yes', 'no']),
+    shouldersSoftened: z.enum(['yes', 'no']),
+    breathingHelped: z.enum(['yes', 'no', 'a-little']),
+    neutralThings: z.array(z.string().min(1, nonEmptyMessage)).length(3, 'Add three neutral observations.'),
+    softerNow: z.string().min(3, nonEmptyMessage),
+    notes: z.string().min(2, nonEmptyMessage),
   }),
-
-  /** Form 6 — Benefits That Resonate With Me */
+  'emotional-body-map': z.object({
+    bodyArea: z.string().min(1, nonEmptyMessage),
+    sensation: z.string().min(1, nonEmptyMessage),
+    possibleEmotion: z.string().min(1, nonEmptyMessage),
+    intensity: z.number().min(1).max(10),
+    needRightNow: z.string().min(3, nonEmptyMessage),
+    notes: z.string().min(2, nonEmptyMessage),
+  }),
+  'regulation-tracker': z.object({
+    days: z.array(daySchema).length(7, 'Track seven days.'),
+  }),
   'pendulation-tracking': z.object({
-    resonantBenefits: z.array(z.string()).min(1, arrReq),
-    mostImportant: z.string().min(2, req),
-    currentRelationshipWithBody: z.enum(['distant', 'neutral', 'complicated', 'present']),
-    readinessLevel: z.number().min(1).max(10),
-    intention: z.string().min(5, req),
-    oneQuestion: z.string().min(5, req),
+    discomfortArea: z.string().min(2, nonEmptyMessage),
+    neutralArea: z.string().min(2, nonEmptyMessage),
+    sensationInDiscomfort: z.string().min(2, nonEmptyMessage),
+    sensationInNeutral: z.string().min(2, nonEmptyMessage),
+    intensityBefore: z.number().min(1).max(10),
+    intensityAfter: z.number().min(1).max(10),
+    didShiftOccur: z.enum(['yes', 'no', 'slightly']),
+    notes: z.string().min(2, nonEmptyMessage),
   }),
-
-  /** Form 7 — Embodied Confidence Check-In */
   'resource-anchoring': z.object({
-    date: z.string().min(1, req),
-    presenceInBody: z.number().min(1).max(10),
-    confidenceInBody: z.number().min(1).max(10),
-    howYouCarriedYourself: z.string().min(3, req),
-    momentOfPresence: z.string().min(5, req),
-    whatShifted: z.string().min(5, req),
+    resourceType: z.string().min(2, nonEmptyMessage),
+    whereFeltInBody: z.string().min(2, nonEmptyMessage),
+    sensationQuality: z.string().min(2, nonEmptyMessage),
+    intensityOfResource: z.number().min(1).max(10),
+    didItExpand: z.enum(['yes', 'no', 'slightly']),
+    whatHelpedItGrow: z.string().min(2, nonEmptyMessage),
+    notes: z.string().min(2, nonEmptyMessage),
   }),
-
+  'titration-awareness': z.object({
+    sensationNoticed: z.string().min(2, nonEmptyMessage),
+    intensityLevel: z.number().min(1).max(10),
+    wasItManageable: z.enum(['yes', 'no', 'partially']),
+    didYouPause: z.enum(['yes', 'no']),
+    whatHelpedRegulate: z.string().min(2, nonEmptyMessage),
+    afterState: z.number().min(1).max(10),
+    notes: z.string().min(2, nonEmptyMessage),
+  }),
+  'boundary-containment': z.object({
+    boundaryAwareness: z.string().min(2, nonEmptyMessage),
+    whereYouFeelContained: z.string().min(2, nonEmptyMessage),
+    whereYouFeelOpenOrExposed: z.string().min(2, nonEmptyMessage),
+    didContainmentIncrease: z.enum(['yes', 'no', 'slightly']),
+    whatHelpedContainment: z.string().min(2, nonEmptyMessage),
+    bodyResponse: z.string().min(2, nonEmptyMessage),
+    notes: z.string().min(2, nonEmptyMessage),
+  }),
+  'somatic-tracking': z.object({
+    sensationLocation: z.string().min(2, nonEmptyMessage),
+    sensationType: z.string().min(2, nonEmptyMessage),
+    sensationMovement: z.string().min(2, nonEmptyMessage),
+    intensityStart: z.number().min(1).max(10),
+    intensityEnd: z.number().min(1).max(10),
+    didItChange: z.enum(['yes', 'no', 'slightly']),
+    changeDescription: z.string().min(2, nonEmptyMessage),
+    notes: z.string().min(2, nonEmptyMessage),
+  }),
 } satisfies { [K in FormSlug]: z.ZodTypeAny };
 
-// ─── Default values ───────────────────────────────────────────────────────────
-
 export const defaultValues: FormValuesMap = {
-
-  /** Form 1 — Welcome to Your Body */
   'daily-check-in': {
     date: new Date().toISOString().slice(0, 10),
-    presenceLevel: 5,
-    bodyAreas: [],
+    energyLevel: 5,
+    stressLevel: 5,
+    sleepQuality: 5,
+    tensionAreas: [],
     sensations: [],
-    emotion: [],
-    whatBroughtYouHere: '',
-    oneWord: '',
-  },
-
-  /** Form 2 — Pleasure & Aliveness Map */
-  'body-awareness': {
-    aliveAreas: [],
-    numbAreas: [],
-    pleasureDefinition: '',
-    permissionLevel: 5,
-    whatLimitsPleasure: '',
-    oneDesire: '',
-  },
-
-  /** Form 3 — Sensation Vocabulary Builder */
-  'end-of-shift-reset': {
-    currentSensations: [],
-    sensationLocation: '',
-    sensationDescription: '',
-    sensationShift: 'shifted',
-    storyVsSensation: '',
+    emotion: '',
     reflection: '',
+    supportiveAction: '',
   },
-
-  /** Form 4 — Desire Discovery Form */
-  'emotional-body-map': {
-    desireInBody: '',
-    desireInLife: '',
-    desireBlocked: [],
-    desirePermission: 5,
-    desireBeliefs: '',
-    desireNewBelief: '',
+  'body-awareness': {
+    beforeStressLevel: 5,
+    tensionArea: '',
+    changeAfter: '',
+    afterStressLevel: 4,
+    grounded: 'a-little',
+    notes: '',
   },
-
-  /** Form 5 — Know Your Nervous System */
-  'regulation-tracker': {
-    currentState: 'mixed',
+  'end-of-shift-reset': {
     activationLevel: 5,
-    regulationSignals: '',
-    activationSignals: '',
-    regulationSupports: [''],
-    pleasureAndSafety: '',
+    jawRelaxed: 'no',
+    shouldersSoftened: 'no',
+    breathingHelped: 'a-little',
+    neutralThings: ['', '', ''],
+    softerNow: '',
+    notes: '',
   },
-
-  /** Form 6 — Benefits That Resonate With Me */
+  'emotional-body-map': {
+    bodyArea: '',
+    sensation: '',
+    possibleEmotion: '',
+    intensity: 5,
+    needRightNow: '',
+    notes: '',
+  },
+  'regulation-tracker': {
+    days: Array.from({ length: 7 }, (_, index) => ({
+      day: index + 1,
+      bodyScanCompleted: false,
+      breathingCompleted: false,
+      groundingCompleted: false,
+      shoulderResetCompleted: false,
+      notes: '',
+    })),
+  },
   'pendulation-tracking': {
-    resonantBenefits: [],
-    mostImportant: '',
-    currentRelationshipWithBody: 'neutral',
-    readinessLevel: 5,
-    intention: '',
-    oneQuestion: '',
+    discomfortArea: '',
+    neutralArea: '',
+    sensationInDiscomfort: '',
+    sensationInNeutral: '',
+    intensityBefore: 5,
+    intensityAfter: 4,
+    didShiftOccur: 'slightly',
+    notes: '',
   },
-
-  /** Form 7 — Embodied Confidence Check-In */
   'resource-anchoring': {
-    date: new Date().toISOString().slice(0, 10),
-    presenceInBody: 5,
-    confidenceInBody: 5,
-    howYouCarriedYourself: '',
-    momentOfPresence: '',
-    whatShifted: '',
+    resourceType: '',
+    whereFeltInBody: '',
+    sensationQuality: '',
+    intensityOfResource: 5,
+    didItExpand: 'slightly',
+    whatHelpedItGrow: '',
+    notes: '',
   },
-
+  'titration-awareness': {
+    sensationNoticed: '',
+    intensityLevel: 5,
+    wasItManageable: 'partially',
+    didYouPause: 'yes',
+    whatHelpedRegulate: '',
+    afterState: 4,
+    notes: '',
+  },
+  'boundary-containment': {
+    boundaryAwareness: '',
+    whereYouFeelContained: '',
+    whereYouFeelOpenOrExposed: '',
+    didContainmentIncrease: 'slightly',
+    whatHelpedContainment: '',
+    bodyResponse: '',
+    notes: '',
+  },
+  'somatic-tracking': {
+    sensationLocation: '',
+    sensationType: '',
+    sensationMovement: '',
+    intensityStart: 5,
+    intensityEnd: 4,
+    didItChange: 'slightly',
+    changeDescription: '',
+    notes: '',
+  },
 };
