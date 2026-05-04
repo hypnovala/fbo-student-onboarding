@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { Lock, X, ArrowRight, CheckCircle2, AlertCircle } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
 
@@ -84,8 +85,19 @@ export function Level2Gate() {
         </div>
 
         <div className="relative overflow-hidden rounded-2xl border border-mist">
+          {/* Level 2 background image slot */}
+          <div className="absolute inset-0 z-0 bg-warm">
+            <Image
+              src="/images/level2-bg.jpg"
+              alt=""
+              fill
+              className="object-cover opacity-25"
+              sizes="100vw"
+            />
+          </div>
+
           {/* Blurred preview cards */}
-          <div className="grid select-none gap-4 p-6 opacity-60 md:grid-cols-2 xl:grid-cols-4 [filter:blur(3px)] [pointer-events:none]">
+          <div className="relative z-10 grid select-none gap-4 p-6 opacity-60 md:grid-cols-2 xl:grid-cols-4 [filter:blur(3px)] [pointer-events:none]">
             {['Arrival', 'Sensual Awakening', 'Breath as Foreplay', 'Jing Awareness', 'Expansion', 'Circulation', 'Integration'].map((title, i) => (
               <Card key={title} className="p-5">
                 <p className="mb-1 text-xs font-medium text-stone">Module {i + 1}</p>
