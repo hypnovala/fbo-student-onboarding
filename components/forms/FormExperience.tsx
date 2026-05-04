@@ -48,7 +48,14 @@ export function FormExperience<K extends FormSlug>({ form }: { form: FormDefinit
     const values = watchedValues as FormValuesMap[K];
 
     const filled = Object.values(values).filter((value) => {
-      if (Array.isArray(value)) return value.filter(Boolean).length > 0;
+      if (Array.isArray(value)) {
+        if (value.length && typeof value[0] === 'object' && value[0] !== null && 'day' in (value[0] as object)) {
+          return (value as Array<Record<string, unknown>>).some((day) =>
+            ['bodyScanCompleted', 'breathingCompleted', 'groundingCompleted', 'shoulderResetCompleted'].some((key) => day[key] === true),
+          );
+        }
+        return value.filter(Boolean).length > 0;
+      }
       return value !== '' && value !== null && value !== undefined;
     }).length;
 
@@ -73,6 +80,16 @@ export function FormExperience<K extends FormSlug>({ form }: { form: FormDefinit
     setCompleted(true);
     setStatusMessage('Form marked complete and saved locally on this device.');
   };
+
+  const renderedFields = form.fields.map((field) => (
+    <Field
+      key={field.name}
+      field={field}
+      register={formMethods.register as any}
+      control={formMethods.control as any}
+      errors={formMethods.formState.errors as any}
+    />
+  ));
 
   return (
     <div className="grid gap-6 lg:grid-cols-[0.95fr_1.25fr]">
@@ -129,15 +146,7 @@ export function FormExperience<K extends FormSlug>({ form }: { form: FormDefinit
       <Card className="p-6 md:p-8">
         <form onSubmit={formMethods.handleSubmit(onSubmit)} className="space-y-6" noValidate>
           <FormSection title="Notice and observe" description="Complete each field in the way that feels most useful today.">
-            {form.fields.map((field) => (
-              <Field
-                key={field.name}
-                field={field}
-                register={formMethods.register as any}
-                control={formMethods.control as any}
-                errors={formMethods.formState.errors as any}
-              />
-            ))}
+            {renderedFields}
           </FormSection>
           <div className="flex flex-col gap-3 border-t border-mist pt-6 sm:flex-row">
             <Button type="submit" className="sm:min-w-48" disabled={isSubmitting}>
