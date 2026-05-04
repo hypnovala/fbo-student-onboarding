@@ -59,87 +59,112 @@ export type FormDefinition = {
 
 // ─── Form value types ────────────────────────────────────────────────────────
 
-/** Form 1 — Welcome to Your Body */
-export type BodyWelcomeValues = {
+export type WelcomeToYourBodyValues = {
   date: string;
-  presenceLevel: number;
-  bodyAreas: string[];
+  energyLevel: number;
+  stressLevel: number;
+  sleepQuality: number;
+  tensionAreas: string[];
   sensations: string[];
-  emotion: string[];
-  whatBroughtYouHere: string;
-  oneWord: string;
-};
-
-/** Form 2 — Pleasure & Aliveness Map */
-export type PleasureMapValues = {
-  aliveAreas: string[];
-  numbAreas: string[];
-  pleasureDefinition: string;
-  permissionLevel: number;
-  whatLimitsPleasure: string;
-  oneDesire: string;
-};
-
-/** Form 3 — Sensation Vocabulary Builder */
-export type SensationVocabularyValues = {
-  currentSensations: string[];
-  sensationLocation: string;
-  sensationDescription: string;
-  sensationShift: string;
-  storyVsSensation: string;
+  emotion: string;
   reflection: string;
+  supportiveAction: string;
 };
 
-/** Form 4 — Desire Discovery Form */
-export type DesireDiscoveryValues = {
-  desireInBody: string;
-  desireInLife: string;
-  desireBlocked: string[];
-  desirePermission: number;
-  desireBeliefs: string;
-  desireNewBelief: string;
+export type PleasureAlivenessMapValues = {
+  beforeStressLevel: number;
+  tensionArea: string;
+  changeAfter: string;
+  afterStressLevel: number;
+  grounded: 'yes' | 'no' | 'a-little';
+  notes: string;
 };
 
-/** Form 5 — Know Your Nervous System */
-export type NervousSystemValues = {
-  currentState: string;
+export type SensationVocabularyValues = {
   activationLevel: number;
-  regulationSignals: string;
-  activationSignals: string;
-  regulationSupports: string[];
-  pleasureAndSafety: string;
+  jawRelaxed: 'yes' | 'no';
+  shouldersSoftened: 'yes' | 'no';
+  breathingHelped: 'yes' | 'no' | 'a-little';
+  neutralThings: string[];
+  softerNow: string;
+  notes: string;
 };
 
-/** Form 6 — Benefits That Resonate With Me */
-export type BenefitsExplorerValues = {
-  resonantBenefits: string[];
-  mostImportant: string;
-  currentRelationshipWithBody: string;
-  readinessLevel: number;
-  intention: string;
-  oneQuestion: string;
+export type DesireDiscoveryValues = {
+  bodyArea: string;
+  sensation: string;
+  possibleEmotion: string;
+  intensity: number;
+  needRightNow: string;
+  notes: string;
 };
 
-/** Form 7 — Embodied Confidence Check-In */
+export type NervousSystemCheckInValues = {
+  days: TrackerDay[];
+};
+
+export type BenefitsResonateValues = {
+  discomfortArea: string;
+  neutralArea: string;
+  sensationInDiscomfort: string;
+  sensationInNeutral: string;
+  intensityBefore: number;
+  intensityAfter: number;
+  didShiftOccur: 'yes' | 'no' | 'slightly';
+  notes: string;
+};
+
 export type EmbodiedConfidenceValues = {
-  date: string;
-  presenceInBody: number;
-  confidenceInBody: number;
-  howYouCarriedYourself: string;
-  momentOfPresence: string;
-  whatShifted: string;
+  resourceType: string;
+  whereFeltInBody: string;
+  sensationQuality: string;
+  intensityOfResource: number;
+  didItExpand: 'yes' | 'no' | 'slightly';
+  whatHelpedItGrow: string;
+  notes: string;
+};
+
+export type TitrationAwarenessValues = {
+  sensationNoticed: string;
+  intensityLevel: number;
+  wasItManageable: 'yes' | 'no' | 'partially';
+  didYouPause: 'yes' | 'no';
+  whatHelpedRegulate: string;
+  afterState: number;
+  notes: string;
+};
+
+export type BoundaryContainmentValues = {
+  boundaryAwareness: string;
+  whereYouFeelContained: string;
+  whereYouFeelOpenOrExposed: string;
+  didContainmentIncrease: 'yes' | 'no' | 'slightly';
+  whatHelpedContainment: string;
+  bodyResponse: string;
+  notes: string;
+};
+
+export type SomaticTrackingValues = {
+  sensationLocation: string;
+  sensationType: string;
+  sensationMovement: string;
+  intensityStart: number;
+  intensityEnd: number;
+  didItChange: 'yes' | 'no' | 'slightly';
+  changeDescription: string;
+  notes: string;
 };
 
 // ─── FormValuesMap ────────────────────────────────────────────────────────────
 
 export type FormValuesMap = {
-  'welcome-to-your-body': DailyCheckInValues;
-  'pleasure-aliveness-map': BodyAwarenessValues;
-  'sensation-vocabulary': EndOfShiftValues;
-  'desire-discovery': EmotionalBodyMapValues;
-  'nervous-system-check-in': RegulationTrackerValues;
-  'benefits-resonate': PendulationTrackingValues;
-  'embodied-confidence': ResourceAnchoringValues;
+  'welcome-to-your-body': WelcomeToYourBodyValues;
+  'pleasure-aliveness-map': PleasureAlivenessMapValues;
+  'sensation-vocabulary': SensationVocabularyValues;
+  'desire-discovery': DesireDiscoveryValues;
+  'nervous-system-check-in': NervousSystemCheckInValues;
+  'benefits-resonate': BenefitsResonateValues;
+  'embodied-confidence': EmbodiedConfidenceValues;
   'titration-awareness': TitrationAwarenessValues;
   'boundary-containment': BoundaryContainmentValues;
   'somatic-tracking': SomaticTrackingValues;
