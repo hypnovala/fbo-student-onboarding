@@ -82,6 +82,16 @@ export function FormExperience<K extends FormSlug>({ form }: { form: FormDefinit
     setStatusMessage('Form marked complete and saved locally on this device.');
   };
 
+  const renderedFields = form.fields.map((field) => (
+    <Field
+      key={field.name}
+      field={field}
+      register={formMethods.register as any}
+      control={formMethods.control as any}
+      errors={formMethods.formState.errors as any}
+    />
+  ));
+
   return (
     <div className="grid gap-6 lg:grid-cols-[0.95fr_1.25fr]">
       <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
@@ -137,19 +147,7 @@ export function FormExperience<K extends FormSlug>({ form }: { form: FormDefinit
       <Card className="p-6 md:p-8">
         <form onSubmit={formMethods.handleSubmit(onSubmit)} className="space-y-6" noValidate>
           <FormSection title="Notice and observe" description="Complete each field in the way that feels most useful today.">
-            {form.slug === 'regulation-tracker' ? (
-              <TrackerField control={formMethods.control as any} />
-            ) : (
-              form.fields.map((field) => (
-                <Field
-                  key={field.name}
-                  field={field}
-                  register={formMethods.register as any}
-                  control={formMethods.control as any}
-                  errors={formMethods.formState.errors as any}
-                />
-              ))
-            )}
+            {renderedFields}
           </FormSection>
           <div className="flex flex-col gap-3 border-t border-mist pt-6 sm:flex-row">
             <Button type="submit" className="sm:min-w-48" disabled={isSubmitting}>
