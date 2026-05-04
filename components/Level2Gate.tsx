@@ -78,7 +78,7 @@ export function Level2Gate() {
           <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-xs font-bold text-white">2</div>
           <div>
             <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-primary">Level 2 — FBO Members Only</p>
-            <h2 className="text-2xl font-light text-ink">35-Minute Deep Yoni &amp; Full-Body Orgasmic Activation</h2>
+            <h2 className="text-2xl font-light text-ink">Deep Yoni &amp; Full-Body Orgasmic Activation</h2>
             <p className="mt-1 text-sm font-light text-stone">The complete somatic course — seven guided practice modules with worksheets, breath work, energy cultivation, and full integration.</p>
           </div>
         </div>
@@ -103,7 +103,7 @@ export function Level2Gate() {
             <div className="text-center">
               <p className="font-serif text-2xl font-light text-ink">FBO Members Only</p>
               <p className="mt-2 max-w-sm text-sm text-stone">
-                The full 35-minute somatic activation course is available to FBO members. Join to unlock all 7 practice modules.
+                The full somatic activation course is available to FBO members. Join to unlock all 7 practice modules.
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">

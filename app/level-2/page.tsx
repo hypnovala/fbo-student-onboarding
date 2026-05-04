@@ -249,7 +249,7 @@ export default function Level2Page() {
               <span style={{ fontSize: 8 }}>●</span> Module {m.num}
             </div>
             <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 28, fontWeight: 500, color: '#2E1F0E', lineHeight: 1.2, marginBottom: 4 }}>{m.title}</div>
-            <div style={{ fontSize: 12, color: '#7A5C38', letterSpacing: '0.06em', marginBottom: 16 }}>{m.subtitle} · 35-Minute Deep Yoni &amp; Full-Body Orgasmic Activation</div>
+            <div style={{ fontSize: 12, color: '#7A5C38', letterSpacing: '0.06em', marginBottom: 16 }}>{m.subtitle} · Deep Yoni &amp; Full-Body Orgasmic Activation</div>
           </div>
 
           {/* Accent divider */}
@@ -333,7 +333,7 @@ export default function Level2Page() {
           )}
           {current === 6 && (
             <div style={{ background: '#D8EBE2', borderLeft: '3px solid #2E7A5E', padding: '16px 20px', borderRadius: 0 }}>
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 17, color: '#2E7A5E', marginBottom: 4 }}>You have completed the full 35-minute activation.</div>
+              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 17, color: '#2E7A5E', marginBottom: 4 }}>You have completed the full activation.</div>
               <div style={{ fontSize: 13, color: '#7A5C38', lineHeight: 1.7 }}>Return to this course as often as you like. Each pass deepens the practice.</div>
             </div>
           )}
