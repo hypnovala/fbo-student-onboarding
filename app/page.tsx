@@ -33,8 +33,8 @@ export default function HomePage() {
           <SectionIntro
             titleAs="h1"
             eyebrow="Your somatic journey begins here"
-            title="Before the right person finds you — find yourself."
-            description="Not with a partner. Not with a goal. With you — arriving in your own body, maybe for the first time. These reflections are your threshold."
+            title="Your Body Has Been Waiting for You"
+            description="You don't need a partner, a reason, or any experience to start. These seven reflections will help you feel more alive in your own skin — one small, honest moment at a time."
           />
           <div className="flex flex-col gap-3 sm:flex-row">
             <Link
