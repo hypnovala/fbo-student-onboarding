@@ -114,7 +114,7 @@ export function Level2Gate() {
                 I&apos;m a Member — Enter <ArrowRight className="h-4 w-4" />
               </button>
               <a
-                href="https://fbo-membership.vercel.app"
+                href="https://course.brockjohn.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-ink ring-1 ring-mist transition hover:bg-warm"
