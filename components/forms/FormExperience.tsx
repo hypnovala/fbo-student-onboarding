@@ -15,6 +15,7 @@ import { FormSection } from '@/components/ui/FormSection';
 import { ProgressBar } from '@/components/ui/ProgressBar';
 import { formatDateTime } from '@/lib/utils';
 import { useSavedForms } from '@/lib/useSavedForms';
+import { TrackerField } from './TrackerField';
 
 export function FormExperience<K extends FormSlug>({ form }: { form: FormDefinition & { slug: K } }) {
   const [statusMessage, setStatusMessage] = useState('');
@@ -60,7 +61,7 @@ export function FormExperience<K extends FormSlug>({ form }: { form: FormDefinit
     }).length;
 
     return Math.round((filled / form.fields.length) * 100);
-  }, [form.fields.length, watchedValues]);
+  }, [form.fields.length, form.slug, watchedValues]);
 
   const onSaveDraft = () => {
     saveEntry(form.slug, form.title, formMethods.getValues(), 'draft');
