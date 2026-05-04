@@ -71,7 +71,7 @@ export default function HomePage() {
         <Card className="relative overflow-hidden p-0">
           <div className="absolute inset-0 z-0 bg-warm">
             <Image
-              src="/images/quote-texture.jpg"
+              src="/images/quote-texture.jpeg"
               alt=""
               fill
               className="object-cover opacity-20"
