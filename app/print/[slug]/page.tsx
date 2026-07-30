@@ -1,4 +1,5 @@
-import { notFound, redirect } from 'next/navigation';
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import { PrintableSummary } from '@/components/forms/PrintableSummary';
 import { formDefinitions, formLookup } from '@/data/forms';
 import { FormSlug } from '@/types/forms';
@@ -7,16 +8,25 @@ export function generateStaticParams() {
   return formDefinitions.map((form) => ({ slug: form.slug }));
 }
 
-export default function PrintPage({ params }: { params: { slug: string } }) {
-  if (params.slug === 'regulation-tracker') {
-    redirect('/print/nervous-system-check-in');
-  }
-
-  const form = formLookup[params.slug as FormSlug];
+export function generateMetadata({ params }: { params: { slug: FormSlug } }): Metadata {
+  const form = formLookup[params.slug];
 
   if (!form) {
-    notFound();
+    return {
+      title: 'Printable summary | Brock Somatic Exercise Forms',
+    };
   }
 
-  return <PrintableSummary form={form as any} />;
+  return {
+    title: `${form.title} Summary | Brock Somatic Exercise Forms`,
+    description: `Printable summary for ${form.title}.`,
+  };
+}
+
+export default function PrintPage({ params }: { params: { slug: FormSlug } }) {
+  const form = formLookup[params.slug];
+
+  if (!form) notFound();
+
+  return <PrintableSummary form={form} />;
 }
