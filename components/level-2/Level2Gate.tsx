@@ -170,4 +170,3 @@ export function Level2Gate({ children }: { children: ReactNode }) {
     </div>
   );
 }
-
